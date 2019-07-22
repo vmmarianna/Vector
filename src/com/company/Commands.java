@@ -4,11 +4,12 @@ import java.util.Scanner;
 
 public class Commands {
 
-    private Scanner scanner = new Scanner(System.in);
-    private Vector x;
-    private Vector y;
-    private Vector z;
-    private Vector c;
+
+    private Vector vector1;
+    private Vector vector2;
+    private Vector result;
+
+    Scanner scanner = new Scanner(System.in);
 
 
     public void serve() {
@@ -22,39 +23,53 @@ public class Commands {
                     System.out.println("add");
                     System.out.println("sum");
                     System.out.println("sub");
-                    System.out.println("multiply");
+                    System.out.println("MultiplyNumber");
+                    System.out.println("MultiplyVector");
                     System.out.println("exit");
                     break;
                 case "ADD":
                     input();
                     break;
                 case "PRINT":
+                    System.out.println(vector1);
+                    System.out.println(vector2);
                     break;
                 case "SUM":
-
-
+                    result = vector1.sum(vector2);
+                    print(command);
                     break;
-                    /*
+
                 case "SUB":
-                    z = x.sub(y);
+                    result = vector1.sub(vector2);
                     print(command);
                     break;
 
-                case "MULTIPLY":
-                    z = x.multiply(y);
+                case "MULTIPLYVECTOR":
+                    result = vector1.multiplyVector(vector2);
                     print(command);
                     break;
-                    */
+
+                case "MULTIPLYNUMBER":
+                    double number = scanner.nextDouble();
+                    System.out.println("Input number: " + number);
+                    result = vector1.multiplyNumber(number);
+                    scanner.nextLine();
+                    print(command);
+                    break;
                 case "EXIT":
                     System.exit(0);
                     break;
 
                 default:
-                    System.out.println("Unexpected value: " + command.toUpperCase());
+                    System.out.println("Unexpected value: " + command);
                     break;
             }
 
         }
+    }
+
+    private void print(String command) {
+        System.out.println(command + " " + result);
     }
 
 
@@ -71,9 +86,8 @@ public class Commands {
         double y2 = scanner.nextDouble();
         System.out.println("Input z2: ");
         double z2 = scanner.nextDouble();
-
-       x = new Vector(x1,y1,z1);
-        y = new Vector(x2,y2,z2);
+        vector1 = new Vector(x1,y1,z1);
+        vector2 = new Vector(x2,y2,z2);
         scanner.nextLine();
     }
 }
